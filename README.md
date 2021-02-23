@@ -29,6 +29,12 @@ Create `/etc/hosts` file:
 192.168.125.240	galaxyng
 ```
 
+Create working directory:
+
+```
+$ mkdir work && cd work
+```
+
 Create `install.yml` for pulp_installer:
 
 ```
@@ -44,9 +50,9 @@ Create `install.yml` for pulp_installer:
       galaxy-ng:
         version: 4.2.2
       pulp-ansible:
-        version: 0.5.6
+        version: 0.7.0
       pulp-container:
-        version: 2.1.0
+        version: 2.3.0
   roles:
     - pulp.pulp_installer.pulp_all_services
   environment:
@@ -63,7 +69,7 @@ Create ansible.cfg file:
 
 ```
 [defaults]
-host_key_checking=fals
+host_key_checking=false
 ```
 
 Install pulp and plugins by pulp_installer:
@@ -71,6 +77,45 @@ Install pulp and plugins by pulp_installer:
 ```
 $ ansible-playbook -i inventory install.yml -u redhat --ask-pass --ask-become-pass
 ```
+
+Create `post_install.yml`:
+
+```
+---
+- hosts: all
+  vars:
+    pulp_url: "http://127.0.0.1:24817"
+    pulp_admin_username: admin
+    pulp_default_admin_password: changeme
+    pulp_validate_certs: false
+  roles:
+    - ansible.galaxy_collection.post_install_config
+  pre_tasks:
+    - name: Clean OpenAPI cache
+      file:
+        path: "{{ lookup('env', 'XDG_CACHE_HOME') | default('~/.cache') }}/squeezer"
+        state: absent
+        
+  post_tasks:
+    - name: Get services
+      service_facts:
+
+    - name: Restart all pulpcore* services
+      systemd:
+        daemon_reload: true
+        name: "{{ item.value.name }}"
+        state: restarted
+      when: "item.value.name != 'pulpcore-worker@.service'"
+      with_dict: '{{ ansible_facts.services|dict2items|selectattr("key", "contains", "pulpcore")|list|items2dict }}'
+      become: true
+```
+
+Postinstall process:
+
+```
+$ ansible-playbook -i inventory post_install.yml -u redhat --ask-pass --ask-become-pass
+```
+
 
 # References
 - [End User Installation](https://github.com/ansible/galaxy_ng/wiki/End-User-Installation)
