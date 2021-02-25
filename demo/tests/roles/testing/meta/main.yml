@@ -1,0 +1,27 @@
+galaxy_info:
+  author: Hideki Saito(saito@fgrep.org)
+  description: This role is for galaxyng demo site
+  company: Ansible Organization
+
+  issue_tracker_url: https://github.com/saito-hideki/galaxyng-demo/issues
+
+  license: MIT
+
+  min_ansible_version: 2.9
+
+  platforms:
+  - name: Fedora
+    versions:
+      - all
+  - name: CentOS
+    versions:
+      - all
+  - name: RHEL
+    versions:
+      - all
+
+  galaxy_tags:
+    - testing
+    - demo
+
+dependencies: []

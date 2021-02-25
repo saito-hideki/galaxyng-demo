@@ -1,0 +1,21 @@
+---
+# Based on https://github.com/ansible/galaxy_ng/wiki/End-User-Installation
+- hosts: all
+  vars:
+    pulp_settings:
+      secret_key: changeme
+      content_origin: "https://galaxyng"
+    pulp_default_admin_password: changeme
+    pulpcore_version: 3.8.1
+    pulp_install_plugins:
+      galaxy-ng:
+        version: 4.2.2
+      pulp-ansible:
+        version: 0.5.6
+      pulp-container:
+        version: 2.1.0
+  roles:
+    - pulp.pulp_installer.pulp_all_services
+  environment:
+    DJANGO_SETTINGS_MODULE: pulpcore.app.settings
+
