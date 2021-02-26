@@ -1,0 +1,20 @@
+namespace: demo
+name: testing
+version: 0.0.1
+readme: README.md
+authors:
+- Hideki Saito <saito@fgrep.org>
+description: test collection for demo site
+# Either a single license or a list of licenses for content inside of a collection. Ansible Galaxy currently only
+# accepts L(SPDX,https://spdx.org/licenses/) licenses. This key is mutually exclusive with 'license_file'
+license:
+- MIT
+license_file: ''
+tags: [demo,testing]
+dependencies: {}
+repository: http://github.com/saito-hideki/galaxyng-demo.git
+documentation: https://github.com/saito-hideki/galaxyng-demo/blob/master/README.md
+homepage: https://github.com/saito-hideki/galaxyng-demo/blob/master/README.md
+issues: https://github.com/saito-hideki/galaxyng-demo/issues
+build_ignore: []
+
