@@ -1,0 +1,6 @@
+---
+- assert:
+    that:
+      - ansible_os_family == 'RedHat'
+      - ansible_distribution_major_version == '8'
+    fail_msg: '{{ansible_host}} does not meet requirements for this installation program'

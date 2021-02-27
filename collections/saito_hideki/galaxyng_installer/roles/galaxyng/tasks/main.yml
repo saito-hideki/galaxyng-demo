@@ -1,0 +1,34 @@
+---
+- name: install pulp and plugins
+  import_role:
+    name: pulp.pulp_installer.pulp_all_services
+  environment:
+    DJANGO_SETTINGS_MODULE: pulpcore.app.settings
+
+- name: configure galaxy site
+  import_role:
+    name: ansible.galaxy_collection.post_install_config
+
+- name: gathering services on managed node
+  service_facts:
+  become: true
+
+- name: generate pulp service list
+  set_fact:
+    pulp_services: >
+      {{
+        services |
+        dict2items |
+        selectattr('key', 'match', '^pulpcore-*') |
+        rejectattr('key', 'match', '^pulpcore-worker*') |
+        list |
+        items2dict
+      }}
+
+- name: restart pulp service
+  systemd:
+    name: "{{ item.key }}"
+    state: restarted
+    daemon_reload: true
+  with_dict: '{{ pulp_services }}'
+  become: true

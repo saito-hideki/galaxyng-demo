@@ -1,0 +1,22 @@
+---
+namespace: saito_hideki
+name: galaxyng_installer
+version: 0.0.4
+readme: README.md
+authors:
+- Hideki Saito <saito@fgrep.org>
+description: Install and configure GalaxyNG site
+license:
+  - GPL-2.0-or-later
+tags:
+  - galaxy
+  - galaxyng
+  - pulp
+dependencies:
+  ansible.galaxy_collection: "*"
+  pulp.pulp_installer: "*"
+
+repository: https://github.com/saito-hideki/galaxyng-demo
+documentation: https://github.com/saito-hideki/galaxyng-demo
+homepage: https://github.com/saito-hideki/galaxyng-demo
+issues: https://github.com/saito-hideki/galaxyng-demo/issues

@@ -1,0 +1,17 @@
+---
+pulp_admin_username: admin
+pulp_default_admin_password: changeme
+pulp_url: "http://127.0.0.1:24817"
+pulp_validate_certs: false
+pulp_settings:
+  secret_key: changeme
+  content_origin: 'https://{{ ansible_hostname }}'
+
+pulpcore_version: 3.8.1
+pulp_install_plugins:
+  galaxy-ng:
+    version: 4.2.2
+  pulp-ansible:
+    version: 0.5.6
+  pulp-container:
+    version: 2.1.0

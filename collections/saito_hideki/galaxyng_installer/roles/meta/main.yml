@@ -1,0 +1,16 @@
+---
+dependencies: []
+
+galaxy_info:
+  author: Hideki Saito <saito@fgrep.org>
+  description: Install and configure GalaxyNG site
+  license: "GPL-2.0-or-later"
+  min_ansible_version: 2.9
+  platforms:
+    - name: EL
+      versions:
+        - 8
+  galaxy_tags:
+    - galaxy
+    - galaxyng
+    - pulp
