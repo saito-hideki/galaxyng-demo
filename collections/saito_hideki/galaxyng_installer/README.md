@@ -10,17 +10,18 @@ Create an `inventory` file:
 galaxyng
 ```
 
-Download the collection using `ansible-galaxy` command:
+Download the collection and required role using `ansible-galaxy` command:
 
 ```
 $ ansible-galaxy collection install saito_hideki.galaxyng_installer
+$ ansible-galaxy role install geerlingguy.postgresql
 ```
 
 Create `install.yml`:
 
 ```
 ---
-- name: Install GalayNG to build demo site
+- name: Install GalaxyNG to build demo site
   hosts: galaxyng
   gather_facts: true
 

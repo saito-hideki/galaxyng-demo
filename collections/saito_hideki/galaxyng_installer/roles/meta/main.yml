@@ -1,6 +1,6 @@
 ---
-dependencies: []
-
+dependencies:
+  - geerlingguy.postgresql
 galaxy_info:
   author: Hideki Saito <saito@fgrep.org>
   description: Install and configure GalaxyNG site
