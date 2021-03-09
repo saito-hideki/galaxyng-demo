@@ -32,3 +32,14 @@
     daemon_reload: true
   with_dict: '{{ pulp_services }}'
   become: true
+
+- name: disable content checking
+  ini_file:
+    path: /etc/galaxy-importer/galaxy-importer.cfg
+    section: galaxy-importer
+    option: '{{ item }}'
+    value: 'False'
+  loop:
+    - RUN_FLAKE8
+    - RUN_ANSIBLE_LINT
+  become: true

@@ -1,7 +1,7 @@
 ---
 namespace: saito_hideki
 name: galaxyng_installer
-version: 0.0.5
+version: 0.0.7
 readme: README.md
 authors:
 - Hideki Saito <saito@fgrep.org>
